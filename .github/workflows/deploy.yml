@@ -24,8 +24,7 @@ jobs:
         with:
           experimental: true
       - run: mise run pnpm-install
-      - run: pnpm exec playwright install --with-deps chromium
-      - run: mise run check:all
+      - run: mise run check
       - run: mise run build
       - uses: actions/upload-pages-artifact@v3
         with:
