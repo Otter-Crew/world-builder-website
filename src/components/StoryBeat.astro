@@ -1,0 +1,26 @@
+---
+import styles from './StoryBeat.module.css';
+
+interface Props {
+  title: string;
+  description: string;
+  media?: 'left' | 'right';
+}
+const { title, description, media = 'right' }: Props = Astro.props;
+// The compiler registers a `media` slot whenever a caller *mentions* one, even
+// behind a false condition, so ask what it actually rendered: a beat whose
+// capture does not exist yet must not leave an empty grid cell behind.
+const mediaHtml = Astro.slots.has('media')
+  ? await Astro.slots.render('media')
+  : '';
+const hasMedia = mediaHtml.trim() !== '';
+---
+
+<li class:list={[styles.beat, hasMedia && styles.hasMedia, media === 'left' && styles.mediaLeft]}>
+  <div class={styles.copy}>
+    <h3 class={styles.title}>{title}</h3>
+    <p class={styles.description}>{description}</p>
+    <slot />
+  </div>
+  {hasMedia && <div class={styles.media} set:html={mediaHtml} />}
+</li>

@@ -1,0 +1,11 @@
+{
+  "name": "World Builder",
+  "short_name": "World Builder",
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ],
+  "theme_color": "#f8f4eb",
+  "background_color": "#f8f4eb",
+  "display": "browser"
+}

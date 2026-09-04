@@ -1,0 +1,13 @@
+---
+import styles from './FaqItem.module.css';
+
+interface Props {
+  question: string;
+}
+const { question }: Props = Astro.props;
+---
+
+<details class={styles.item}>
+  <summary class={styles.summary}><h3 class={styles.question}>{question}</h3></summary>
+  <div class={styles.answer}><slot /></div>
+</details>

@@ -1,0 +1,15 @@
+---
+import { site } from '../site';
+import styles from './SiteHeader.module.css';
+import Wordmark from './Wordmark.astro';
+---
+
+<header class={styles.siteHeader}>
+  <div class:list={['container', styles.siteHeaderInner]}>
+    <Wordmark />
+    <nav class={styles.nav} aria-label="Primary">
+      {site.nav.map((item) => <a href={item.href} class={styles.navLink}>{item.label}</a>)}
+      <a href={site.store.href} class={styles.cta}>{site.store.label}</a>
+    </nav>
+  </div>
+</header>

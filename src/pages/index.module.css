@@ -1,0 +1,46 @@
+.beats {
+  margin-top: var(--space-md);
+}
+
+.status {
+  color: var(--c-stone);
+  flex-basis: 100%;
+  font-size: var(--text-small);
+  margin-top: var(--space-2xs);
+}
+
+.ownership {
+  border-block: 1px solid var(--c-hair);
+  display: grid;
+  gap: var(--space-md);
+  padding-block: var(--space-xl);
+}
+
+.ownership-copy {
+  max-width: 56ch;
+}
+
+.ownership-copy p,
+.closing p {
+  color: var(--c-ink-soft);
+  line-height: 1.7;
+  margin-top: var(--space-sm);
+}
+
+.ownership-caption {
+  color: var(--c-stone);
+  font-size: var(--text-small);
+}
+
+.closing {
+  max-width: 56ch;
+}
+
+.fallback {
+  font-size: var(--text-small);
+}
+
+.signature {
+  color: var(--c-stone);
+  font-style: italic;
+}

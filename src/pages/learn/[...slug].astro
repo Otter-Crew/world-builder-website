@@ -1,0 +1,45 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import ArrowLink from '../../components/ArrowLink.astro';
+import Figure from '../../components/Figure.astro';
+import GuideToc from '../../components/GuideToc.astro';
+import Section from '../../components/Section.astro';
+import SectionMarker from '../../components/SectionMarker.astro';
+import { slugOf } from '../../content/guides';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/prose.css';
+import styles from './learn.module.css';
+
+export async function getStaticPaths() {
+  const guides = (
+    await getCollection('guides', ({ data }) => !data.draft)
+  ).sort((a, b) => a.data.order - b.data.order);
+  return guides.map((guide, index) => ({
+    params: { slug: slugOf(guide.id) },
+    props: { guide, next: guides[index + 1] },
+  }));
+}
+
+interface Props {
+  guide: CollectionEntry<'guides'>;
+  next?: CollectionEntry<'guides'>;
+}
+const { guide, next } = Astro.props;
+const { Content, headings } = await render(guide);
+const toc = headings.filter((heading) => heading.depth === 2);
+---
+
+<BaseLayout title={guide.data.title} description={guide.data.description}>
+  <Section top="2xl" bottom="lg" width="content">
+    <SectionMarker>Learn</SectionMarker>
+    <h1 class={styles.title}>{guide.data.title}</h1>
+    <p class={styles.lede}>{guide.data.description}</p>
+  </Section>
+  <Section top="lg" bottom="2xl" width="content">
+    <p class={styles.outcome}>{guide.data.outcome}</p>
+    <Figure src={guide.data.hero} alt={guide.data.heroAlt} caption={guide.data.heroCaption} priority sizes="(max-width: 48rem) 100vw, 44rem" />
+    <GuideToc headings={toc} />
+    <div class="prose"><Content /></div>
+    {next && <p class={styles.next}><ArrowLink href={`/learn/${slugOf(next.id)}/`}>Next: {next.data.title}</ArrowLink></p>}
+  </Section>
+</BaseLayout>

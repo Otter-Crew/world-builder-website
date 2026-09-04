@@ -1,0 +1,21 @@
+.section {
+  padding-block: var(--sec-top) var(--sec-bottom);
+}
+.section[data-top='lg'] {
+  --sec-top: var(--space-lg);
+}
+.section[data-top='xl'] {
+  --sec-top: var(--space-xl);
+}
+.section[data-top='2xl'] {
+  --sec-top: var(--space-2xl);
+}
+.section[data-bottom='lg'] {
+  --sec-bottom: var(--space-lg);
+}
+.section[data-bottom='xl'] {
+  --sec-bottom: var(--space-xl);
+}
+.section[data-bottom='2xl'] {
+  --sec-bottom: var(--space-2xl);
+}

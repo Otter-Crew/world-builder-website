@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import styles from './Figure.module.css';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  caption?: string;
+  sizes?: string;
+  priority?: boolean;
+}
+const {
+  src,
+  alt,
+  caption,
+  sizes = '(max-width: 48rem) 100vw, 35rem',
+  priority = false,
+}: Props = Astro.props;
+// Captures come out of the app at their own natural sizes, so cap the
+// rendered width at the source's and keep the source width itself as the
+// largest srcset candidate -- otherwise Astro's `src` fallback points at a
+// variant no `srcset` lists.
+const width = Math.min(1280, src.width);
+const widths = [...[640, 960, 1280].filter((w) => w < width), width];
+---
+
+<figure class={styles.figure}>
+  <Image
+    class={styles.image}
+    src={src}
+    alt={alt}
+    width={width}
+    widths={widths}
+    sizes={sizes}
+    format="webp"
+    loading={priority ? 'eager' : 'lazy'}
+    fetchpriority={priority ? 'high' : undefined}
+    decoding="async"
+  />
+  {caption && <figcaption class={styles.caption}>{caption}</figcaption>}
+</figure>

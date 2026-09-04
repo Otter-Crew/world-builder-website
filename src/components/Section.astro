@@ -1,0 +1,23 @@
+---
+import styles from './Section.module.css';
+
+type Space = 'lg' | 'xl' | '2xl';
+interface Props {
+  top?: Space;
+  bottom?: Space;
+  width?: 'wide' | 'content';
+  id?: string;
+  labelledby?: string;
+}
+const {
+  top = 'xl',
+  bottom = 'xl',
+  width = 'wide',
+  id,
+  labelledby,
+} = Astro.props;
+---
+
+<section id={id} aria-labelledby={labelledby} class={styles.section} data-top={top} data-bottom={bottom}>
+  <div class:list={['container', width === 'content' && 'container--content']}><slot /></div>
+</section>

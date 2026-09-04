@@ -1,0 +1,45 @@
+.title {
+  font-size: var(--text-display);
+  font-weight: 320;
+  letter-spacing: -0.022em;
+  margin-top: var(--space-md);
+}
+.lede {
+  color: var(--c-ink-soft);
+  font-size: var(--text-lede);
+  line-height: 1.5;
+  margin-top: var(--space-md);
+  max-width: 48ch;
+}
+.outcome {
+  color: var(--c-ink);
+  font-weight: 500;
+  margin-bottom: var(--space-md);
+}
+.list {
+  margin-top: var(--space-md);
+}
+.item {
+  border-top: 1px solid var(--c-hair);
+  padding-block: var(--space-md);
+}
+.item:last-child {
+  border-bottom: 1px solid var(--c-hair);
+}
+.link {
+  color: var(--c-ink);
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: 440;
+}
+.link:hover {
+  color: var(--c-accent);
+}
+.description {
+  color: var(--c-ink-soft);
+  margin-top: var(--space-2xs);
+  max-width: 60ch;
+}
+.next {
+  margin-top: var(--space-xl);
+}

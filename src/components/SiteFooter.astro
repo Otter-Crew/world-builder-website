@@ -1,0 +1,17 @@
+---
+import { home } from '../content/home';
+import { site } from '../site';
+import styles from './SiteFooter.module.css';
+import Wordmark from './Wordmark.astro';
+
+const year = new Date().getFullYear();
+const { footer } = home;
+---
+
+<footer class={styles.siteFooter}>
+  <div class:list={['container', styles.siteFooterInner]}>
+    <div><Wordmark soft /><p class={styles.siteFooterTag}>{footer.tagline}</p></div>
+    <nav class={styles.siteFooterNav} aria-label="Footer">{site.nav.map((item) => <a href={item.href}>{item.label}</a>)}</nav>
+  </div>
+  <div class:list={['container', styles.siteFooterBase]}><span>&copy; {year} Otter Crew</span></div>
+</footer>
